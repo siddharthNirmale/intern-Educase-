@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Login() {
   const navigate = useNavigate();
@@ -22,14 +23,21 @@ function Login() {
   };
 
   return (
-    <div className="text-left px-[25px] mt-[40px]">
-      <h1 className="text-2xl font-semibold text-[#1D2226] mb-[14px] tracking-wide">
+    <motion.div
+      className="text-left px-[25px] mt-[40px]"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h1 className="text-3xl font-bold text-[#1D2226] mb-[14px] tracking-wide">
         Signin to your <br /> PopX account
       </h1>
-      <h1 className="text-gray-500 text-lg mb-6 justify-left">
+      <h1 className="text-gray-500 text-lg mb-6">
         Lorem ipsum dolor sit amet,
         consectetur adipiscing elit
       </h1>
+
       <form className="space-y-4" onSubmit={handleLogin}>
         <div>
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
@@ -66,7 +74,7 @@ function Login() {
           Login
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

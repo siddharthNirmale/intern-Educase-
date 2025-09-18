@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import camera from "../assets/Camera.svg";
 import profile from "../assets/profile.png";
+import { motion } from "framer-motion";
 
 function Account() {
   const [profilePhoto, setProfilePhoto] = useState(profile);
@@ -25,7 +26,13 @@ function Account() {
   };
 
   return (
-    <div className="text-left">
+    <motion.div
+      className="text-left"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1 className="text-xl text-gray-900 bg-white p-4 pt-5">Account Settings</h1>
 
       <div className="p-4 flex items-center space-x-4">
@@ -61,7 +68,7 @@ function Account() {
         Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam
         Erat, Sed Diam
       </p>
-    </div>
+    </motion.div>
   );
 }
 

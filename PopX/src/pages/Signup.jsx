@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Signup() {
   const navigate = useNavigate();
@@ -33,12 +34,19 @@ function Signup() {
   };
 
   return (
-    <div className="text-left  mt-[40px]">
-      <div className="text-2xl font-semibold text-[#1D2226] mb-[14px] tracking-wide pb-[22px]">
+    <motion.div
+      className="text-left mt-[40px]"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="text-3xl font-bold text-[#1D2226] mb-[14px] tracking-wide pb-[22px]">
         <p>Create your <br /> PopX account</p>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-6 w-[325px] ">
-        <div className="">
+      <form onSubmit={handleSubmit} className="space-y-6 w-[325px]">
+        {/* Full Name */}
+        <div className="mt-[22px]">
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
             Full Name<span className="text-red-500">*</span>
           </label>
@@ -51,6 +59,7 @@ function Signup() {
           />
         </div>
 
+        {/* Phone Number */}
         <div>
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
             Phone number<span className="text-red-500">*</span>
@@ -64,6 +73,7 @@ function Signup() {
           />
         </div>
 
+        {/* Email */}
         <div>
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
             Email address<span className="text-red-500">*</span>
@@ -77,6 +87,7 @@ function Signup() {
           />
         </div>
 
+        {/* Password */}
         <div>
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
             Password<span className="text-red-500">*</span>
@@ -90,6 +101,7 @@ function Signup() {
           />
         </div>
 
+        {/* Company */}
         <div>
           <label className="block text-sm font-semibold text-violet-700 absolute bg-[#F7F8F9] px-2 -mt-[7px] ml-2 z-10">
             Company name
@@ -103,7 +115,8 @@ function Signup() {
           />
         </div>
 
-        <div className="relative min-h-[270px]">
+        {/* Agency */}
+        <div className="relative min-h-[215px]">
           <p className="text-sm font-semibold text-gray-700 mb-2">
             Are you an Agency?<span className="text-red-500">*</span>
           </p>
@@ -142,7 +155,7 @@ function Signup() {
           Create Account
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 
