@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
       
       <div >
-        <div className="flex flex-col items-start justify-end text-center h-[72vh]  ">
+        <div className="flex flex-col items-start justify-end text-center h-[75vh]  ">
           <h1 className="heading text-2xl font-bold text-[#1D2226] mb-[10px]">Welcome to PopX</h1>
           <p className="para text-gray-500 text-md mb-[29px] text-left">
             Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit,

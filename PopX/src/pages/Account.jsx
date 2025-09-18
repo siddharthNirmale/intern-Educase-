@@ -1,25 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import camera from "../assets/Camera.svg";
+import profile from "../assets/profile.png";
 
 function Account() {
+  const [profilePhoto, setProfilePhoto] = useState(profile);
+  const [user, setUser] = useState({ name: "", email: "" });
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      setUser({ name: currentUser.name, email: currentUser.email });
+    }
+  }, []);
+
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfilePhoto(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="text-left">
-      <h1 className="text-xl font-bold text-gray-900 mb-6">
-        Account Settings
-      </h1>
+      <h1 className="text-xl text-gray-900 bg-white p-4 pt-5">Account Settings</h1>
 
-      <div className="bg-gray-100 p-4 rounded-md flex items-center gap-4 mb-4">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D5603AQGZ-WDe0XeOOA/profile-displayphoto-scale_200_200/B56Zft88GcHcAc-/0/1752043865739?e=2147483647&v=beta&t=CXSLba-0pMWfLQWGKwkZKyBppZmzgniiRbc_Iy1z8TQ"
-          alt="profile"
-          className="w-16 h-16 rounded-full"
-        />
+      <div className="p-4 flex items-center space-x-4">
+        <div className="relative w-16 h-16">
+          <img
+            src={profilePhoto}
+            alt="Profile"
+            className="w-16 h-16 rounded-full object-cover"
+          />
+          <label
+            htmlFor="photo-upload"
+            className="absolute bottom-0 right-0 bg-white rounded-full cursor-pointer"
+          >
+            <img src={camera} alt="Camera" className="w-4 h-4" />
+          </label>
+          <input
+            type="file"
+            id="photo-upload"
+            accept="image/*"
+            className="hidden"
+            onChange={handlePhotoChange}
+          />
+        </div>
+
         <div>
-          <p className="font-bold text-gray-800">Sayan Mondal</p>
-          <p className="text-gray-600 text-sm">sayandevelops@gmail.com</p>
+          <p className="font-bold text-gray-800">{user.name}</p>
+          <p className="text-gray-600 text-sm">{user.email}</p>
         </div>
       </div>
 
-      <p className="text-gray-600 text-sm leading-relaxed">
+      <p className="text-gray-600 text-sm leading-relaxed px-4 border-dotted pb-4 border-b border-gray-300">
         Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam
         Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam
         Erat, Sed Diam
